@@ -18,10 +18,9 @@ Don't forget to restart the application when you add new locale.
 ActionView helper code is adapted from Rails' default +country_select+ plugin (previously in core).
 See http://github.com/rails/country_select/tree/master/lib/country_select.rb
 
-== Example
+== Examples
 
     <%= country_select(:user, :country, {}, :include_blank => 'Please choose...') %>
-    <%= country_select(:user, :country, {:description => :abbreviated}, :include_blank => 'Please choose...') %>
 
 will become:
     
@@ -33,6 +32,17 @@ will become:
     <option value="ZW">Zimbabwe</option>
     </select>
 
+    <%= country_select(:user, :country, {:description => :abbreviated}, :include_blank => 'Please choose...') %>
+
+will become:
+    
+    <select name="user[country]" id="user_country">
+    <option value="">Please choose...</option>
+    <option disabled="disabled" value="">-------------</option>
+    <option value="AF">AF</option>
+    ...
+    <option value="ZW">ZW</option>
+    </select>
 for the <tt>en</tt> locale.
 
 == Other resources
