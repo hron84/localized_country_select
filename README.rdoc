@@ -20,6 +20,8 @@ See http://github.com/rails/country_select/tree/master/lib/country_select.rb
 
 == Examples
 
+Show the complete country name:
+
     <%= country_select(:user, :country, {}, :include_blank => 'Please choose...') %>
 
 will become:
@@ -31,6 +33,9 @@ will become:
     ...
     <option value="ZW">Zimbabwe</option>
     </select>
+
+
+Show only the country codes:
 
     <%= country_select(:user, :country, {:description => :abbreviated}, :include_blank => 'Please choose...') %>
 
