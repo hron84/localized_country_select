@@ -20,7 +20,8 @@ See http://github.com/rails/country_select/tree/master/lib/country_select.rb
 
 == Example
 
-    <%= localized_country_select(:user, :country, [], :include_blank => 'Please choose...') %>
+    <%= country_select(:user, :country, {}, :include_blank => 'Please choose...') %>
+    <%= country_select(:user, :country, {:description => :abbreviated}, :include_blank => 'Please choose...') %>
 
 will become:
     
