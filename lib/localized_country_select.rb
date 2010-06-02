@@ -65,7 +65,7 @@ module ActionView
       # It behaves likes older object-binded brother +localized_country_select+ otherwise
       # TODO : Implement pseudo-named args with a hash, not the "somebody said PHP?" multiple args sillines
       def country_select_tag(name, selected_value = nil, priority_countries = nil, html_options = {})
-        select_tag name.to_sym, localized_country_options_for_select(selected_value, priority_countries), html_options.stringify_keys
+        select_tag name.to_sym, country_options_for_select(selected_value, priority_countries), html_options.stringify_keys
       end
 
       # Returns a string of option tags for countries according to locale. Supply the country code in upper-case ('US', 'DE') 

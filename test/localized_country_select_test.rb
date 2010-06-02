@@ -1,3 +1,5 @@
+$KCODE = 'u'
+
 require 'test/unit'
 
 require 'rubygems'
@@ -24,40 +26,40 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
   include ActionView::Helpers::FormTagHelper
 
   def test_action_view_should_include_helper_for_object
-    assert ActionView::Helpers::FormBuilder.instance_methods.include?('localized_country_select')
-    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('localized_country_select')
+    assert ActionView::Helpers::FormBuilder.instance_methods.include?('country_select')
+    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('country_select')
   end
 
   def test_action_view_should_include_helper_tag
-    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('localized_country_select_tag')
+    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('country_select_tag')
   end
 
   def test_should_return_select_tag_with_proper_name_for_object
-    # puts localized_country_select(:user, :country)
-    assert localized_country_select(:user, :country) =~
+    # puts country_select(:user, :country)
+    assert country_select(:user, :country) =~
               Regexp.new(Regexp.escape('<select id="user_country" name="user[country]">')),
               "Should have proper name for object"
   end
 
   def test_should_return_select_tag_with_proper_name
-    # puts localized_country_select_tag( "competition_submission[data][citizenship]", nil)
-    assert localized_country_select_tag( "competition_submission[data][citizenship]", nil) =~
+    # puts country_select_tag( "competition_submission[data][citizenship]", nil)
+    assert country_select_tag( "competition_submission[data][citizenship]", nil) =~
               Regexp.new(
               Regexp.escape('<select id="competition_submission_data_citizenship" name="competition_submission[data][citizenship]">') ),
               "Should have proper name"
   end
 
   def test_should_return_option_tags
-    assert localized_country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Spain</option>'))
+    assert country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Spain</option>'))
   end
 
   def test_should_return_localized_option_tags
     I18n.locale = 'cz'
-    assert localized_country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Španělsko</option>'))
+    assert country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Španělsko</option>'))
   end
 
   def test_should_return_priority_countries_first
-    assert localized_country_options_for_select(nil, [:ES, :CZ]) =~ Regexp.new(
+    assert country_options_for_select(nil, [:ES, :CZ]) =~ Regexp.new(
       Regexp.escape("<option value=\"ES\">Spain</option>\n<option value=\"CZ\">Czech Republic</option><option value=\"\" disabled=\"disabled\">-------------</option>\n<option value=\"AF\">Afghanistan</option>\n"))
   end
 
@@ -97,7 +99,7 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
 
   def test_should_list_countries_with_accented_names_in_correct_order
     I18n.locale = 'cz'
-    assert_match Regexp.new(Regexp.escape(%Q{<option value="BI">Burundi</option>\n<option value="TD">Čad</option>})), localized_country_select(:user, :country)
+    assert_match Regexp.new(Regexp.escape(%Q{<option value="BI">Burundi</option>\n<option value="TD">Čad</option>})), country_select(:user, :country)
   end
 
   private
