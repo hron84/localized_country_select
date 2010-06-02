@@ -10,7 +10,7 @@ require 'open-uri'
 # Don't forget to restart the application when you add new locale to load it into Rails!
 # 
 # == Example
-#   rake import:country_select 'de'
+#   rake import:country_select LOCALE=de
 # 
 # The code is deliberately procedural and simple, so it's easily
 # understandable by beginners as an introduction to Rake tasks power.
@@ -30,9 +30,9 @@ namespace :import do
     # TODO : Implement locale import chooser from CLDR root via Highline
     
     # Setup variables
-    locale = ARGV[1]
+    locale = ENV['LOCALE']
     unless locale
-      puts "\n[!] Usage: rake import:country_select de\n\n"
+      puts "\n[!] Usage: rake import:country_select LOCALE=de\n\n"
       exit 0
     end
 
@@ -81,7 +81,7 @@ TAIL
     
     # ----- Write the parsed values into file      ---------------------------------
     puts "\n... writing the output"
-    filename = File.join(File.dirname(__FILE__), '..', 'locale', "#{locale}.rb")
+    filename = File.join(File.dirname(__FILE__), '..', '..', 'locale', "#{locale}.rb")
     filename += '.NEW' if File.exists?(filename) # Append 'NEW' if file exists
     File.open(filename, 'w+') { |f| f << output }
     puts "\n---\nWritten values for the '#{locale}' into file: #{filename}\n"
