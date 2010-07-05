@@ -25,10 +25,10 @@ module LocalizedCountrySelect
     def localized_countries_array(options={})
       if(options[:description]==:abbreviated)
         I18n.translate(:countries).map { |key, value| [key.to_s.upcase] }.
-          sort_by { |country| country.first.parameterize }
+          sort_by { |country| country.first }
       else
         I18n.translate(:countries).map { |key, value| [value, key.to_s.upcase] }.
-          sort_by { |country| country.first.parameterize }
+          sort_by { |country| country.first }
       end
     end
     # Return array with codes and localized country names for array of country codes passed as argument
