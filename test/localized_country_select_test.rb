@@ -1,3 +1,4 @@
+# coding: utf-8
 $KCODE = 'u'
 
 require 'test/unit'
@@ -5,7 +6,7 @@ require 'test/unit'
 require 'rubygems'
 require 'active_support'
 require 'action_controller'
-require 'action_controller/test_process'
+# require 'action_controller/test_process'
 require 'action_view'
 require 'action_view/helpers'
 require 'action_view/helpers/tag_helper'
@@ -26,12 +27,12 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
   include ActionView::Helpers::FormTagHelper
 
   def test_action_view_should_include_helper_for_object
-    assert ActionView::Helpers::FormBuilder.instance_methods.include?('country_select')
+    assert ActionView::Helpers::FormBuilder.instance_methods.include?('country_select') # WTF not working with 1.9
     assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('country_select')
   end
 
   def test_action_view_should_include_helper_tag
-    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('country_select_tag')
+    assert ActionView::Helpers::FormOptionsHelper.instance_methods.include?('country_select_tag') # WTF not working with 1.9
   end
 
   def test_should_return_select_tag_with_proper_name_for_object
@@ -54,8 +55,8 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
   end
 
   def test_should_return_localized_option_tags
-    I18n.locale = 'cz'
-    assert country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Španělsko</option>'))
+    I18n.locale = 'ru'
+    assert country_select(:user, :country) =~ Regexp.new(Regexp.escape('<option value="ES">Испания</option>'))
   end
 
   def test_should_return_priority_countries_first
@@ -65,19 +66,19 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
 
   def test_i18n_should_know_about_countries
     assert_equal 'Spain', I18n.t('ES', :scope => 'countries')
-    I18n.locale = 'cz'
-    assert_equal 'Španělsko', I18n.t('ES', :scope => 'countries')
+    I18n.locale = 'ru'
+    assert_equal 'Испания', I18n.t('ES', :scope => 'countries')
   end
 
   def test_localized_countries_array_returns_correctly
     assert_nothing_raised { LocalizedCountrySelect::localized_countries_array() }
     # puts LocalizedCountrySelect::localized_countries_array.inspect
     I18n.locale = 'en'
-    assert_equal 266, LocalizedCountrySelect::localized_countries_array.size
+    assert_equal 243, LocalizedCountrySelect::localized_countries_array.size
     assert_equal 'Afghanistan', LocalizedCountrySelect::localized_countries_array.first[0]
-    I18n.locale = 'cz'
-    assert_equal 250, LocalizedCountrySelect::localized_countries_array.size
-    assert_equal 'Afghánistán', LocalizedCountrySelect::localized_countries_array.first[0]
+    I18n.locale = 'ru'
+    assert_equal 243, LocalizedCountrySelect::localized_countries_array.size
+    assert_equal 'Австралия', LocalizedCountrySelect::localized_countries_array.first[0]
   end
 
   def test_priority_countries_returns_correctly_and_in_correct_order
@@ -98,14 +99,14 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
   end
 
   def test_should_list_countries_with_accented_names_in_correct_order
-    I18n.locale = 'cz'
-    assert_match Regexp.new(Regexp.escape(%Q{<option value="BI">Burundi</option>\n<option value="TD">Čad</option>})), country_select(:user, :country)
+    I18n.locale = 'ru'
+    assert_match Regexp.new(Regexp.escape(%Q{<option value="BT">Бутан</option>\n<option value="VU">Вануату</option>})), country_select(:user, :country)
   end
 
-  private
+  # private
 
   def setup
-    ['cz', 'en'].each do |locale|
+    ['ru', 'en'].each do |locale|
       # I18n.load_translations( File.join(File.dirname(__FILE__), '..', 'locale', "#{locale}.rb")  )  # <-- Old style! :)
       I18n.load_path += Dir[ File.join(File.dirname(__FILE__), '..', 'locale', "#{locale}.rb") ]
     end
