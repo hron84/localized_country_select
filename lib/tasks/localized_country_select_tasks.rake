@@ -52,7 +52,7 @@ namespace :import do
     doc.search("//tr").each do |row|
       if row.search("td[@class='n']") && 
          row.search("td[@class='n']").inner_html =~ /^namesterritory$/ && 
-         row.search("td[@class='g']").inner_html =~ /^[A-Z]{2}/
+         row.search("td[@class='g']").inner_html =~ /^[A-Z]{2}$/
         code   = row.search("td[@class='g']").inner_text
         code   = code[-code.size, 2]
         name   = row.search("td[@class='v']").inner_text
