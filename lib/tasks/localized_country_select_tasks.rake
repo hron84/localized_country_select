@@ -81,10 +81,10 @@ TAIL
     
     # ----- Write the parsed values into file      ---------------------------------
     puts "\n... writing the output"
-    filename = File.join(File.dirname(__FILE__), '..', '..', 'locale', "#{locale}.rb")
+    filename = File.join(Rails.root, 'config', 'locales', "localized_country_select.#{locale}.rb")
     filename += '.NEW' if File.exists?(filename) # Append 'NEW' if file exists
     File.open(filename, 'w+') { |f| f << output }
-    puts "\n---\nWritten values for the '#{locale}' into file: #{filename}\n"
+    puts "\n---\nWritten values for the locale '#{locale}' into file: #{filename}\n"
     # ------------------------------------------------------------------------------
   end
 
