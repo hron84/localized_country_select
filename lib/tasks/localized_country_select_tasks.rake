@@ -63,7 +63,8 @@ namespace :import do
 
 
     # ----- Prepare the output format     ------------------------------------------
-    output =<<HEAD
+    output = "#encoding: UTF-8\n"
+    output <<<<HEAD
 { :#{locale} => {
 
     :countries => {
