@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "lib/tasks/localized_country_select_tasks.rake",
     "locale/en.rb",
     "locale/ru.rb",
+    "magic-localized_country_select.gemspec",
     "test/localized_country_select_test.rb",
     "uninstall.rb"
   ]
