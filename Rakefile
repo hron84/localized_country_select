@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
@@ -29,11 +31,11 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "localized_country_select"
+    gemspec.name = "magic-localized_country_select"
     gemspec.summary = "Localized country select list"
-    gemspec.description = "Where are you from ?"
-    gemspec.email = "damien.mathieu@lim.eu"
-    gemspec.homepage = "http://github.com/LIMSAS/localized_country_select"
+    gemspec.description = "Localized country select list"
+    gemspec.email = "mail@magiclabs.de"
+    gemspec.homepage = "https://github.com/magiclabs/localized_country_select"
     gemspec.authors = ["LIM SAS", "Damien MATHIEU", "Julien SANCHEZ", "Hervé GAUCHER"]
   end
 rescue LoadError
