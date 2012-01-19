@@ -37,6 +37,7 @@ begin
     gemspec.email = "mail@magiclabs.de"
     gemspec.homepage = "https://github.com/magiclabs/localized_country_select"
     gemspec.authors = ["LIM SAS", "Damien MATHIEU", "Julien SANCHEZ", "Hervé GAUCHER"]
+    gemspec.add_development_dependency "hpricot", "~> 0.8"
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"
