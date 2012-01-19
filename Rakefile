@@ -4,7 +4,7 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-load File.join(File.dirname(__FILE__), 'lib', 'tasks', 'localized_country_select_tasks.rake')
+#load File.join(File.dirname(__FILE__), 'lib', 'tasks', 'localized_country_select_tasks.rake')
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -37,7 +37,7 @@ begin
     gemspec.email = "mail@magiclabs.de"
     gemspec.homepage = "https://github.com/magiclabs/localized_country_select"
     gemspec.authors = ["LIM SAS", "Damien MATHIEU", "Julien SANCHEZ", "Hervé GAUCHER"]
-    gemspec.add_development_dependency "hpricot", "~> 0.8"
+    gemspec.add_dependency "hpricot", "~> 0.8"
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"

@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "magic-localized_country_select"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["LIM SAS", "Damien MATHIEU", "Julien SANCHEZ", "Herv\u{e9} GAUCHER"]
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<hpricot>, ["~> 0.8"])
+      s.add_runtime_dependency(%q<hpricot>, ["~> 0.8"])
     else
       s.add_dependency(%q<hpricot>, ["~> 0.8"])
     end
